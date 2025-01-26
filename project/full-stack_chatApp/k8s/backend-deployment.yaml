@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: chat-app
+spec:
+  replicas: 1  # Define the number of pod replicas
+  selector:  # Correct structure for selecting the pods
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      name: backend-pod
+      labels:
+        app: backend
+    spec:  # Define the pod spec (containers)
+      containers:
+      - name: chatapp-backend
+        image: unnati05/chatapp-backend:latest  # Docker image
+        ports:
+        - containerPort: 5001  # Expose container port 5001
+        env:
+        - name: NODE_ENV
+          value: production
+        - name: MONGODB_URI
+          value: "mongodb://root:root@mongodb:27017/dbname?authSource=admin"  # MongoDB URI (updated)
+        - name: JWT_SECRET
+          value: "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTczNzg4MTE0NiwiaWF0IjoxNzM3ODgxMTQ2fQ.utc38TKfxbOlFM5Ql1XgZMTedskCAZDBZjE6fAVu-vw"  # Ensure the JWT secret is correct
+        - name: PORT
+          value: "5001"  # Port the backend will listen on

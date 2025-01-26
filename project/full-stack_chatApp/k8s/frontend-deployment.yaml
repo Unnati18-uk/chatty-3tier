@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: chat-app
+spec:
+  replicas: 1
+  selector:  # Corrected "selectors" to "selector"
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: chatapp-frontend
+        image: unnati05/chatapp-frontend:latest  # Corrected "images" to "image"
+        ports:
+        - containerPort: 80
+        env:
+        - name: NODE_ENV
+          value: production

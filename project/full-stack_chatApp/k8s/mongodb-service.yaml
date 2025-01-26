@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb
+  namespace: chat-app
+spec:
+  selector:
+    app: mongodb  # Correct indentation for the selector
+  ports:
+  - port: 27017      # Port exposed by the service
+    targetPort: 27017
+  type: NodePort   # Port on the backend container
