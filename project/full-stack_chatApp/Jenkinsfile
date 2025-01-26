@@ -1,35 +1,36 @@
 pipeline {
   agent any
 
-  environment {
-    SONAR_HOME = tool "sonarqube"
-  }
-
   stages {
-    stage('Clean UP') {
+    stage('Fetch Changes') {
       steps {
-        cleanWs()
-      }
-    }
-    stage('Code Check out') {
-      steps {
-        git branch: 'master',
-          url: 'https://github.com/iemafzalhassan/full-stack_chatApp.git'
+        git branch: 'main',
+          url: 'https://github.com/Unnati18-uk/chatty-3tier.git'
       }
     }
     stage('Code Quality') {
       steps {
-        withSonarQubeEnv("sonarqube") {
-          sh "$SONAR_HOME/bin/sonar-scanner -Dsonar.projectName=chat-app -Dsonar.projectKey=chat-app -X"
-        }
+        sh '''/opt/sonar-scanner/bin/sonar-scanner \
+          -Dsonar.projectKey=3tier-demo \
+          -Dsonar.sources=. \
+          -Dsonar.host.url=http://3.26.102.0:9000 \
+          -Dsonar.login=f3251b92df185001d75c1db2d14be8316e6a0b99'''
+      }
+    }
+    stage('Test') {
+      steps {
+        // Add your test commands here
+        echo "Running tests..."
       }
     }
     stage('Deploy') {
       steps {
         script {
-          sh 'docker compose up -d --build'
+          // Only deploy if the previous stages were successful
+         sh 'docker compose -f project/full-stack_chatApp/docker-compose.yml up -d --build'
         }
       }
     }
   }
 }
+
