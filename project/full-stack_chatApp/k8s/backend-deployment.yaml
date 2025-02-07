@@ -23,7 +23,7 @@ spec:
         - name: NODE_ENV
           value: production
         - name: MONGODB_URI
-          value: "mongodb://root:root@mongodb:27017/dbname?authSource=admin"  # MongoDB URI (updated)
+          value: "mongodb://root:root@mongodb:27017/dbname?authSource=mongoadmin"  # MongoDB URI (updated)
         - name: JWT_SECRET
           value: "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTczODkzNjU1MSwiaWF0IjoxNzM4OTM2NTUxfQ.5eKUCyGmQ976lCRrOEQ4eze1SHK20Lb6n5wxrcfKg5s"
         - name: PORT
