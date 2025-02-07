@@ -9,4 +9,4 @@ spec:
     - ReadWriteOnce  # Should match the PV's accessModes
   resources:
     requests:
-      storage: 5Gi  # Must be equal to or less than the PV's capacity
+      storage: 1Gi  # Must be equal to or less than the PV's capacity
