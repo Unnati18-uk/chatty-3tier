@@ -5,7 +5,7 @@ metadata:
   namespace: chat-app
 spec:
   capacity:
-    storage: 5Gi  # Specify the storage size
+    storage: 1Gi  # Specify the storage size
   accessModes:
     - ReadWriteOnce  # Define the access mode
   storageClassName: "mongodb-storage"
